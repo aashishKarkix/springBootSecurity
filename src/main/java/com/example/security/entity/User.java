@@ -1,4 +1,4 @@
-package com.example.security.Entity;
+package com.example.security.entity;
 
 
 import com.example.security.enums.Role;

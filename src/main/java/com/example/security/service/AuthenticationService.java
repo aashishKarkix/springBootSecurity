@@ -1,6 +1,6 @@
 package com.example.security.service;
 
-import com.example.security.Entity.User;
+import com.example.security.entity.User;
 import com.example.security.config.JwtService;
 import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.AuthenticationResponse;
