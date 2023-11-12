@@ -1,6 +1,5 @@
 package com.example.security.controller;
 
-
 import com.example.security.dao.AuthenticationResponse;
 import com.example.security.exceptions.AuthenticationRequestException;
 import com.example.security.exceptions.AuthenticationResponseException;
@@ -25,9 +24,10 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody User request
     ) throws AuthenticationRequestException {
-        if(request.getEmail().isEmpty() && request.getPassword().isEmpty()
-                && request.getFirstName().isEmpty() && request.getLastName().isEmpty())
+        if(request.getEmail().isEmpty() || request.getPassword().isEmpty()
+                || request.getFirstName().isEmpty() || request.getLastName().isEmpty()) {
             throw new AuthenticationRequestException("request is not valid");
+        }
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
@@ -35,7 +35,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ) throws AuthenticationResponseException {
-        if(request.getEmail().isEmpty() && request.getPassword().isEmpty())
+        if(request.getEmail().isEmpty() || request.getPassword().isEmpty())
             throw new AuthenticationResponseException("request is not valid");
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }

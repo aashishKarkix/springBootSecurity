@@ -1,6 +1,5 @@
 package com.example.security.entity;
 
-
 import com.example.security.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-
 
 @Entity
 @Builder

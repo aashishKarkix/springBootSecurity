@@ -1,6 +1,5 @@
 package com.example.security.dao;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

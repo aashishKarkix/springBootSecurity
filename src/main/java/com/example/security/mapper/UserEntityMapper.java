@@ -6,7 +6,6 @@ import com.example.security.enums.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class UserEntityMapper {
     private final PasswordEncoder passwordEncoder;

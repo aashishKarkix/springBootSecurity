@@ -1,6 +1,5 @@
 package com.example.security.generator;
 
-
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +22,6 @@ public class KeyGenerator256Bit {
             return bytesToHex(keyBytes);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            // Handle the exception appropriately (e.g., log it or throw a custom exception)
             throw new RuntimeException("Error generating dynamic secret key", e);
         }
     }
