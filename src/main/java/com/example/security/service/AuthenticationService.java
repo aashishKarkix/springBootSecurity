@@ -6,6 +6,7 @@ import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.AuthenticationResponse;
 import com.example.security.dao.RegisterRequest;
 import com.example.security.enums.Role;
+import com.example.security.exceptions.UserAlreadyExistsException;
 import com.example.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException("Email already registered");
+        }
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
