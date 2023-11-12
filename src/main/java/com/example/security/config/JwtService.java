@@ -1,5 +1,6 @@
 package com.example.security.config;
 
+import com.example.security.generator.KeyGenerator256Bit;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,7 +19,7 @@ import java.util.function.Function;
 public class JwtService {
 
     //generate a random secretKey using KeyGenerator256Bit class
-    private static final String SECRET_KEY = "a34dd69c833800af83a6eca8d33a57862f1f5aba6ab68d92d0214ae9f2b04e76";
+    private static final String SECRET_KEY = KeyGenerator256Bit.generateDynamicSecretKey();
 
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
