@@ -22,6 +22,8 @@ The `AuthenticationController` is responsible for handling user registration and
 
 ### Register User
 
+```
+
 POST /api/v1/auth/register
 Registers a new user with the provided user details.
 
@@ -57,3 +59,5 @@ Response
 }
 
 user this bearer token to access all the endpoints
+
+```
