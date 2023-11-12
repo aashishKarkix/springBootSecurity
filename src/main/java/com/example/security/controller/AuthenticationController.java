@@ -2,6 +2,8 @@ package com.example.security.controller;
 
 
 import com.example.security.dao.AuthenticationResponse;
+import com.example.security.exceptions.AuthenticationRequestException;
+import com.example.security.exceptions.AuthenticationResponseException;
 import com.example.security.service.AuthenticationService;
 import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.RegisterRequest;
@@ -22,14 +24,19 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
-    ) {
+    ) throws AuthenticationRequestException {
+        if(request.getEmail().isEmpty() && request.getPassword().isEmpty()
+                && request.getFirstName().isEmpty() && request.getLastName().isEmpty())
+            throw new AuthenticationRequestException("request is not valid");
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/authentication")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
-    ) {
+    ) throws AuthenticationResponseException {
+        if(request.getEmail().isEmpty() && request.getPassword().isEmpty())
+            throw new AuthenticationResponseException("request is not valid");
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }
