@@ -22,7 +22,6 @@ The `AuthenticationController` is responsible for handling user registration and
 
 ### Register User
 
-```http
 POST /api/v1/auth/register
 Registers a new user with the provided user details.
 
@@ -35,29 +34,26 @@ json
   "lastName": "xyz"
 }
 
-Response
-json
+Response json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
 }
 
+user this bearer token for the below endpoint.
+
 Authenticate User
-http
 POST /api/v1/auth/authentication
 Authenticates a user with the provided credentials.
 
-Request
-json
-Copy code
+Request json
 {
   "email": "user@example.com",
   "password": "password123"
 }
+
 Response
-Copy code
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 
-
-use the token generated to access all the endpoints
+user this bearer token to access all the endpoints
