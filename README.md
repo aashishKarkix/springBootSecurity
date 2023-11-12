@@ -67,6 +67,21 @@ The `DemoController` is a basic controller with a single endpoint:
 
 GET /api/v1/hello
 
-Thank you!!!
+```
 
 ```
+application.properties
+
+# Database connection properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/YOUR_DATABASE_NAME
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+
+Make sure to update the spring.datasource.url, spring.datasource.username, and spring.datasource.password properties with your actual database connection details.
+
+```
+
+Thank you !!!
