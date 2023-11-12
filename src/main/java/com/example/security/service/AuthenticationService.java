@@ -1,18 +1,16 @@
 package com.example.security.service;
 
-import com.example.security.entity.User;
 import com.example.security.config.JwtService;
 import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.AuthenticationResponse;
 import com.example.security.dao.RegisterRequest;
-import com.example.security.enums.Role;
 import com.example.security.exceptions.UserAlreadyExistsException;
+import com.example.security.mapper.UserEntityMapper;
 import com.example.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserEntityMapper mapper;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -28,13 +26,7 @@ public class AuthenticationService {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException("Email already registered");
         }
-        var user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.get(request.getRole()).orElse(Role.USER)) // Set the user's role
-                .build();
+        var user = mapper.createUserFromRequest(request);
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse
