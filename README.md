@@ -27,8 +27,7 @@ The `AuthenticationController` is responsible for handling user registration and
 POST /api/v1/auth/register
 Registers a new user with the provided user details.
 
-Request
-json
+Request json
 {
   "email": "user@example.com",
   "password": "password123",
@@ -59,5 +58,15 @@ Response
 }
 
 user this bearer token to access all the endpoints
+
+example :
+
+## Demo Controller
+
+The `DemoController` is a basic controller with a single endpoint:
+
+GET /api/v1/hello
+
+Thank you!!!
 
 ```
