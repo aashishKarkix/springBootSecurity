@@ -1,5 +1,9 @@
 package com.example.security.exceptions;
 
+
+import lombok.Getter;
+
+@Getter
 public class UserAlreadyExistsException extends RuntimeException{
     private final String reason;
 
@@ -7,4 +11,5 @@ public class UserAlreadyExistsException extends RuntimeException{
         super(reason);
         this.reason = reason;
     }
+
 }
