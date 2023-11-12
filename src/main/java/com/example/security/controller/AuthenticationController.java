@@ -6,7 +6,7 @@ import com.example.security.exceptions.AuthenticationRequestException;
 import com.example.security.exceptions.AuthenticationResponseException;
 import com.example.security.service.AuthenticationService;
 import com.example.security.dao.AuthenticationRequest;
-import com.example.security.dao.RegisterRequest;
+import com.example.security.dao.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
+            @RequestBody User request
     ) throws AuthenticationRequestException {
         if(request.getEmail().isEmpty() && request.getPassword().isEmpty()
                 && request.getFirstName().isEmpty() && request.getLastName().isEmpty())

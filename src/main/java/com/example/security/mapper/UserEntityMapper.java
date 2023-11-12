@@ -1,6 +1,6 @@
 package com.example.security.mapper;
 
-import com.example.security.dao.RegisterRequest;
+import com.example.security.dao.User;
 import com.example.security.entity.UserEntity;
 import com.example.security.enums.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,7 @@ public class UserEntityMapper {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserEntity createUserFromRequest(RegisterRequest request) {
+    public UserEntity createUserFromRequest(User request) {
         return UserEntity.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())

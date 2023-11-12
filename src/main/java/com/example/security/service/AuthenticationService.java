@@ -3,7 +3,7 @@ package com.example.security.service;
 import com.example.security.config.JwtService;
 import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.AuthenticationResponse;
-import com.example.security.dao.RegisterRequest;
+import com.example.security.dao.User;
 import com.example.security.exceptions.UserAlreadyExistsException;
 import com.example.security.mapper.UserEntityMapper;
 import com.example.security.repository.UserRepository;
@@ -22,7 +22,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(User request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException("Email already registered");
         }
