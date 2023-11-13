@@ -15,33 +15,37 @@ public class AuthenticationControllerInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationControllerInterceptor.class);
 
     @Override
-    public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) {
+    public boolean preHandle(@NonNull HttpServletRequest request,
+                             @NonNull HttpServletResponse response,
+                             @NonNull Object handler) {
         logger.info("Intercepting request to AuthenticationController: {}", request.getRequestURI());
 
         if (request.getRequestURI().endsWith("/api/v1/auth/register")) {
             return true;
         }
 
-        //Check if the request has certain headers
         String authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader == null || authorizationHeader.isEmpty()) {
             logger.warn("Request does not have Authorization header");
-            // You can modify the response or throw an exception if needed
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return false;  // Stop further processing
+            return false;
         }
 
-        // Continue with the request processing
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    public void postHandle(HttpServletRequest request,
+                           HttpServletResponse response,
+                           Object handler,
+                           ModelAndView modelAndView) {
         // This method is called after the handler is executed
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    public void afterCompletion(HttpServletRequest request,
+                                HttpServletResponse response,
+                                Object handler, Exception ex) {
         logger.info("Request to AuthenticationController completed: {}", request.getRequestURI());
     }
 }

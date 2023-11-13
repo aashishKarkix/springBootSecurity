@@ -21,6 +21,7 @@ public class UserEntityMapper {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.get(request.getRole()).orElse(Role.USER)) // Set the user's role
+                .isVerified(false)
                 .build();
     }
 }

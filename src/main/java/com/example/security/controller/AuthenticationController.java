@@ -1,17 +1,17 @@
 package com.example.security.controller;
 
 import com.example.security.dao.AuthenticationResponse;
+import com.example.security.email.EmailService;
+import com.example.security.entity.UserEntity;
 import com.example.security.exceptions.AuthenticationRequestException;
 import com.example.security.exceptions.AuthenticationResponseException;
 import com.example.security.service.AuthenticationService;
 import com.example.security.dao.AuthenticationRequest;
 import com.example.security.dao.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
+    private final EmailService emailService;
+    @Value("${home.url}")
+    private String homeUrl;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -28,7 +31,18 @@ public class AuthenticationController {
                 || request.getFirstName().isEmpty() || request.getLastName().isEmpty()) {
             throw new AuthenticationRequestException("request is not valid");
         }
+        String verificationLink = homeUrl+"/api/v1/auth/verify";
+        emailService.sendVerificationEmail(request.getEmail(), verificationLink, request.getFirstName(), request.getLastName());
+
         return ResponseEntity.ok(authenticationService.register(request));
+    }
+
+    //todo need to add logic here
+    @GetMapping("/verify")
+    public String isVerified(){
+        UserEntity user = new UserEntity();
+        user.setVerified(true);
+        return "acount verified sucessfully";
     }
 
     @PostMapping("/authentication")
