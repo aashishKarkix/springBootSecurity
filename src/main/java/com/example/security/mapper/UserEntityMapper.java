@@ -1,6 +1,7 @@
 package com.example.security.mapper;
 
 import com.example.security.dao.User;
+import com.example.security.dao.UserEmail;
 import com.example.security.entity.UserEntity;
 import com.example.security.enums.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;

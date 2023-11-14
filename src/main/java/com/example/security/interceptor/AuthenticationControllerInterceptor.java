@@ -20,7 +20,8 @@ public class AuthenticationControllerInterceptor implements HandlerInterceptor {
                              @NonNull Object handler) {
         logger.info("Intercepting request to AuthenticationController: {}", request.getRequestURI());
 
-        if (request.getRequestURI().endsWith("/api/v1/auth/register")) {
+        String requestUri = request.getRequestURI();
+        if (requestUri.endsWith("/api/v1/auth/reset") || requestUri.endsWith("/api/v1/auth/register")) {
             return true;
         }
 
