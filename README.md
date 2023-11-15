@@ -84,6 +84,14 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
 
+
+#email
+mail.username=yourEmail@gmail.com
+email.password=yourEmailAppPassword
+
+home.url=http://localhost:8080/
+
+
 Make sure to update the spring.datasource.url, spring.datasource.username, and spring.datasource.password properties with your actual database connection details.
 
 ```
