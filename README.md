@@ -40,6 +40,10 @@ Response json
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
 }
 
+Email (doing and todo's): 
+1) verification email is also forwared (todo -> will update with verification status)
+2) backend generates a 6 digit code and sends email for reset password feature (todo -> need to add api for new password feature)
+
 user this bearer token for the below endpoint.
 
 Authenticate User
